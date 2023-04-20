@@ -1,2 +1,2 @@
 # FitShare-
-FitShare is a social-networking platform designed to help people achieve their fitness goals and improve their overall health. FitShare offers a collaborative and supportive environment where you can share your progress and get the support and guidance you need to reach your goals.
+FitShare is a cutting-edge social-networking platform designed to help people achieve their fitness goals and improve their overall health. Whether you're a seasoned athlete or just starting out on your fitness journey, FitShare offers a collaborative and supportive environment where you can share your progress, track your workouts and get the support and guidance you need to reach your goals.
