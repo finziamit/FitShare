@@ -1,0 +1,22 @@
+{% extends "base.html" %} {% load static %} {% block content %}
+<head>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'css/home_page.css' %}"
+    />
+  </head>
+    <div class="articles__content left-area">
+        <hr />
+        {% for program in programs %}
+        <h2>{{program | truncatechars:30}}</h2>
+        <p>
+            {{program.date}}
+        </p>
+        {% if request.user.is_authenticated %}
+            <!-- Add authenticated user privilleges-->
+        {% endif %}
+        <hr />
+        {% endfor %}
+    </div>
+{% endblock %}

@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils import timezone
 from django.contrib.auth.models import User as Custom_user
 
 
@@ -24,9 +25,7 @@ class User(models.Model):
     @staticmethod
     def create_user(name, password, gender, weight, height, email):
         """
-         Method to create a new user,
-         but also checks if user is already exists
-         [get user either by mail or by nickname]
+         Method to create a new user
         :param name: user's name
         :param password: user's password
         :param gender: user's gender
@@ -84,7 +83,19 @@ class Exercise(models.Model):
         if reps > 0:
             self.__reps = reps
         self.save()
-
+    
+    @staticmethod
+    def create_exercise(name, sets, reps):
+        """
+        Method to create a new exercise
+        :param name: the exercise's name
+        :param sets: the exercise's sets
+        :param reps: the exercise's reps
+        :return: User object
+        """
+        exercise = Exercise(name=name, sets=sets, reps=reps)
+        exercise.save()
+        return exercise
 
 class Training_Program(models.Model):
     """
@@ -95,6 +106,7 @@ class Training_Program(models.Model):
     """
     user_id = models.ForeignKey(User, on_delete=models.CASCADE)
     excercises = models.ManyToManyField(Exercise)
+    date = models.DateTimeField(default=timezone.now)
 
     def __str__(self):
         return f"{self.__user_id}'s Training program"
