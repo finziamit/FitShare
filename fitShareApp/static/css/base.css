@@ -1,0 +1,61 @@
+@import url("https://fonts.googleapis.com/css2?family=Anton&family=Zilla+Slab:wght@400;700&display=swap");
+html {
+  font-size: 90%;
+  box-sizing: border-box;
+}
+body {
+  background: #FFF8DC;
+  font-family: "Zilla Slab", serif;
+}
+main {
+  min-height: 78.8vh;
+}
+h4 {
+  color: #0e5e6f;
+}
+h2 {
+  font-family: "Anton", sans-serif;
+  color: #0e5e6f;
+}
+p {
+  color: #3a8891;
+}
+
+.navbar {
+    background-color:#b0a289;
+}
+
+.nav__links {
+  display: flex;
+  align-items: center;
+  list-style: none;
+}
+
+.nav__item {
+  margin-left: 4rem;
+}
+
+.nav__link:link,
+.nav__link:visited {
+  font-size: 1.7rem;
+  font-weight: 400;
+  color: inherit;
+  text-decoration: none;
+  display: block;
+  transition: all 0.3s;
+}
+
+.nav__link--btn:link,
+.nav__link--btn:visited {
+  padding: 0.35rem 1.5rem;
+  border-radius: 3rem;
+  background-color: #c86f6e;
+  color: #222;
+}
+
+.nav__link--btn:hover,
+.nav__link--btn:active {
+  color: inherit;
+  background-color: #4bbb7d;
+  color: #333;
+}  
