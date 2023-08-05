@@ -20,5 +20,9 @@ from fitShareApp import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.home_page, name="home_page")
+    path('', views.home_page, name="home_page"),
+    path('create_program/', views.create_program, name="create_program"),
+    path('login/', views.login, name="login"),
+    path('show_program/', views.show_program, name="show_program"),
+    path('about', views.about, name="about")
 ]

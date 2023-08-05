@@ -33,7 +33,7 @@ p {
 
 .nav__item {
   margin-left: 4rem;
-}
+
 
 .nav__link:link,
 .nav__link:visited {
@@ -49,7 +49,7 @@ p {
 .nav__link--btn:visited {
   padding: 0.35rem 1.5rem;
   border-radius: 3rem;
-  background-color: #c86f6e;
+  background-color: #FFF8DC;
   color: #222;
 }
 
