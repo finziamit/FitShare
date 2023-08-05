@@ -18,3 +18,18 @@ def edit_training_program(request):
 
 def delete_training_program(request):
     pass
+
+def sign_up(request):
+    pass
+
+def login(request):
+    pass
+
+def logout(request):
+    pass
+
+def show_program(request):
+    pass
+
+def about(request):
+    pass
