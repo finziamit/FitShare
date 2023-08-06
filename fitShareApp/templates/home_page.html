@@ -6,7 +6,10 @@
       href="{% static 'css/home_page.css' %}"
     />
   </head>
-    <div class="articles__content left-area">
+    <div class="slogan left-area">
+      <!-- Add slogan image 'It's not a bug, it's a FitShare-->
+    </div>
+    <div class="articles__content right-area">
         <hr />
         {% for program in programs %}
         <h2>{{program | truncatechars:30}}</h2>
