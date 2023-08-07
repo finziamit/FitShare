@@ -43,15 +43,3 @@ class EditTrainingProgramForm(forms.ModelForm):
     class Meta:
         model = Training_Program
         fields = ('excercises',)
-
-
-class UserForm(forms.ModelForm):
-    class Meta:
-        model = Custom_user
-        fields = ('password', 'email')
-
-
-class CustomUserForm(forms.ModelForm):
-    class Meta:
-        model = User
-        fields = ('name',)

@@ -38,18 +38,40 @@ def edit_training_program(request):
     pass
 
 
-def delete_training_program(request):
-    pass
+def delete_training_program(request, training_program_pk):
+    try:
+        program = Training_Program.objects.get(id=training_program_pk)
+        user = program.user_id
+        program.delete()
+        return redirect(home_page)
 
-def sign_up(request):
-    pass
+    except Training_Program.DoesNotExist:
+        raise Http404()
+
+def signup(request):
+    if request.user.is_authenticated:
+        return redirect('homepage')
+
+    form = NewUserForm()
+    registration_attempt = False
+    if request.method == 'POST':
+        registration_attempt = True
+        form = NewUserForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Account created successfully')
+            return redirect('login')
+        else:
+            messages.error(request, "Unsuccessful registration. Invalid information.")
+    form = NewUserForm()
+    return render(request, 'signup.html', {'register_form': form, 'registration_attempt': registration_attempt})
 
 def login_user(request):
     if request.user.is_authenticated:
         return redirect("/")
     else:
         if request.method == "POST":
-            username = request.POST.get("email")
+            username = request.POST.get("username")
             password = request.POST.get("password")
             user = authenticate(request, username=username, password=password)
             if user is not None:
@@ -62,6 +84,7 @@ def login_user(request):
         "login_user.html",
     )
 
+
 def logout_user(request):
     pass
 
@@ -69,4 +92,4 @@ def show_program(request):
     pass
 
 def about(request):
-    pass
+    return render(request, 'about.html', {})
