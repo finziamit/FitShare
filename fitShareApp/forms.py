@@ -3,7 +3,7 @@ from .models import Training_Program, Exercise, User
 from django.contrib.auth.models import User as Custom_user
 
 
-class AddTrainingProgramForm(forms.modelForm):
+class AddTrainingProgramForm(forms.ModelForm):
     class Meta:
         model = Training_Program
         fields = ('user_id', 'excercises')
@@ -42,7 +42,7 @@ class NewUserForm(forms.ModelForm):
 class EditTrainingProgramForm(forms.ModelForm):
     class Meta:
         model = Training_Program
-        fields = ('excercises')
+        fields = ('excercises',)
 
 
 class UserForm(forms.ModelForm):
@@ -54,4 +54,4 @@ class UserForm(forms.ModelForm):
 class CustomUserForm(forms.ModelForm):
     class Meta:
         model = User
-        fields = ('name')
+        fields = ('name',)

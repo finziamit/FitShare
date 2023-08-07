@@ -1,0 +1,13 @@
+{% extends 'base.html' %}{% load static %} {% block content %}
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/add_training_program.css' %}">
+</head>    
+<div class="program-container">
+    <h1 class="new-program">New Training Program</h1>
+    <form method="POST">
+        {% csrf_token %} {{ form.as_p }}
+        <input type="submit" value="Publish" />
+    </form>
+</div>
+
+{% endblock %}

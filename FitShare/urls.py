@@ -25,8 +25,8 @@ urlpatterns = [
     path('edit_training_program/', views.edit_training_program, name="edit_training_program"),
     path('delete_training_program/', views.delete_training_program, name="delete_training_program"),
     path('signup/', views.sign_up, name='signup'),
-    path('login/', views.login, name="login"),
-    path('logout/', views.logout, name="logout"),
+    path('login_user/', views.login_user, name="login_user"),
+    path('logout_user/', views.logout_user, name="logout_user"),
     path('show_program/<str:program_pk>', views.show_program, name="show_program"),
     path('about', views.about, name="about")
 ]
