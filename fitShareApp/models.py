@@ -17,9 +17,9 @@ class User(models.Model):
     user1 = models.OneToOneField(Custom_user, on_delete=models.CASCADE, null=True)
     name = models.CharField(max_length=100)
     password = models.CharField(max_length=70)
-    gender = models.CharField(max_length=20, unique=True)
-    weight = models.CharField(max_length=100, unique=True)
-    height = models.CharField(max_length=100, unique=True)
+    gender = models.CharField(max_length=20)
+    weight = models.CharField(max_length=100)
+    height = models.CharField(max_length=100)
     email = models.EmailField(max_length=150, unique=True)
 
     @staticmethod

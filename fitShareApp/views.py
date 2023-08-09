@@ -50,9 +50,8 @@ def delete_training_program(request, training_program_pk):
 
 def signup(request):
     if request.user.is_authenticated:
-        return redirect('homepage')
+        return redirect('home_page')
 
-    form = NewUserForm()
     registration_attempt = False
     if request.method == 'POST':
         registration_attempt = True
@@ -60,10 +59,11 @@ def signup(request):
         if form.is_valid():
             form.save()
             messages.success(request, 'Account created successfully')
-            return redirect('login')
+            return redirect('login_user')
         else:
             messages.error(request, "Unsuccessful registration. Invalid information.")
-    form = NewUserForm()
+    else:
+        form = NewUserForm()
     return render(request, 'signup.html', {'register_form': form, 'registration_attempt': registration_attempt})
 
 def login_user(request):
