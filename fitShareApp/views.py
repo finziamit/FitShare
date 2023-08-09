@@ -68,15 +68,16 @@ def signup(request):
 
 def login_user(request):
     if request.user.is_authenticated:
-        return redirect("/")
+        return redirect("home_paage")
     else:
         if request.method == "POST":
-            username = request.POST.get("username")
+            username = request.POST.get("email")
             password = request.POST.get("password")
+            print(f"usernamne:{username}\npassword:{password}")
             user = authenticate(request, username=username, password=password)
             if user is not None:
                 login(request, user)
-                return redirect("/")
+                return redirect("home_page")
             else:
                 messages.info(request, "Username OR password is incorrect")
     return render(

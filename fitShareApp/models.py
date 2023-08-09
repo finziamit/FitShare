@@ -14,7 +14,7 @@ class User(models.Model):
     height - User's height
     email_address - User's email
     """
-    user1 = models.OneToOneField(Custom_user, on_delete=models.CASCADE, null=True)
+    user1 = models.OneToOneField(Custom_user, on_delete=models.CASCADE)
     name = models.CharField(max_length=100)
     password = models.CharField(max_length=70)
     gender = models.CharField(max_length=20)
@@ -34,7 +34,11 @@ class User(models.Model):
         :param email: user's email
         :return: new user
         """
-        user = User(name=name, password=password,gender=gender, weight=weight, height=height, email=email)
+        custom_user = Custom_user.objects.create(username=email)
+        custom_user.set_password(password)
+        custom_user.save()
+
+        user = User(user1=custom_user, name=name, password=password,gender=gender, weight=weight, height=height, email=email)
         user.save()
         return user
     
