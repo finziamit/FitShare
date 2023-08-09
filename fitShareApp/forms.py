@@ -19,12 +19,11 @@ class NewUserForm(forms.ModelForm):
             attrs={'class': 'form-control', 'placeholder': 'Password'}))
     password_confirm = forms.CharField(required=True, widget=forms.PasswordInput(
             attrs={'class': 'form-control', 'placeholder': 'Confirm Password'}))
-    gender = forms.CharField(required=True, widget=forms.TextInput(
-            attrs={'class': 'form-control', 'placeholder': 'Gender'}))
-    weight = forms.CharField(required=True, widget=forms.TextInput(
-            attrs={'class': 'form-control', 'placeholder': 'Weight'}))
-    height = forms.CharField(required=True, widget=forms.TextInput(
-            attrs={'class': 'form-control', 'placeholder': 'Height'}))
+    weight = forms.DecimalField(required=True, widget=forms.TextInput(
+        attrs={'class': 'form-control', 'placeholder': 'Weight'}))
+    height = forms.DecimalField(required=True, widget=forms.TextInput(
+        attrs={'class': 'form-control', 'placeholder': 'Height'}))
+    gender = forms.ChoiceField(choices=[('M', 'Male'), ('F', 'Female')])
     
     class Meta:
         model = User
@@ -37,6 +36,18 @@ class NewUserForm(forms.ModelForm):
 
             if password != password_confirm:
                 raise forms.ValidationError("Passwords do not match")
+            return cleaned_data
+        
+        def save(self, commit=True):
+            user = User.create_user(
+            name=self.cleaned_data['name'],
+            password=self.cleaned_data['password'],
+            gender=self.cleaned_data['gender'],
+            weight=self.cleaned_data['weight'],
+            height=self.cleaned_data['height'],
+            email=self.cleaned_data['email']
+        )
+            return user
 
 
 class EditTrainingProgramForm(forms.ModelForm):

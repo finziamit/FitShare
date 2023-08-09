@@ -21,43 +21,43 @@
     {% csrf_token %}
     <br />
     <div class="form-group">
-      <label for="email">
+      <label for="{{ register_form.email.id_for_label }}">
         <i class="bi bi-envelope-fill">Email: {{ register_form.email }}</i>
       </label>
     </div>
     <div class="form-group">
-      <label for="name">
+      <label for="{{ register_form.name.id_for_label }}">
         <i class="bi bi-person-fill">Name: {{ register_form.name }}</i>
       </label>
     </div>
     <div class="form-group">
-      <label for="password">
+      <label for="{{ register_form.password.id_for_label }}">
         <i class="bi bi-lock">Password: {{ register_form.password }}</i>
       </label>
     </div>
     <div class="form-group">
-      <label for="password">
+      <label for="{{ register_form.password_confirm.id_for_label }}">
         <i class="bi bi-lock-fill">Confirm Password: {{ register_form.password_confirm}}</i>
       </label>
     </div>
-    <div class="form-group">
-        <label for="gender">
+      <div class="form-group">
+        <label for="{{ register_form.weight.id_for_label }}">
+          <i class="bi bi-person-fill">Weight (kg): {{ register_form.weight }}</i>
+        </label>
+      </div>
+      <div class="form-group">
+        <label for="{{ register_form.height.id_for_label }}">
+          <i class="bi bi-person-fill">Height (cm): {{ register_form.height }}</i>
+        </label>
+      </div>
+      <div class="form-group">
+        <label for="{{ register_form.gender.id_for_label }}">
           <i class="bi bi-person-fill">Gender: {{ register_form.gender }}</i>
         </label>
       </div>
       <div class="form-group">
-        <label for="weight">
-          <i class="bi bi-person-fill">Weight: {{ register_form.weight }}</i>
-        </label>
+        <button class="btn" type="submit">Register</button>
       </div>
-      <div class="form-group">
-        <label for="height">
-          <i class="bi bi-person-fill">Height: {{ register_form.height }}</i>
-        </label>
-      </div>
-    <div class="form-group">
-      <button class="btn" type="submit">Register</button>
-    </div>
     <div class="form-group">
       <p class="text-center">
         Already have an account? <a class="btn" href="/login">Login</a>
