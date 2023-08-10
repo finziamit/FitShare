@@ -17,7 +17,7 @@ def home_page(request):
 def add_training_program(request):
     custom_user = request.user
     if custom_user.is_authenticated:
-        user = User.get_user_by_email(custom_user.email)
+        user = User.get_user_by_email(custom_user.username)
     else:
         return redirect('login_user')
 
@@ -31,7 +31,7 @@ def add_training_program(request):
     else:
         form = AddTrainingProgramForm(initial={'user_id': user})
     
-    return render(request, 'add_trining_program.html', {"user":user, "form":form})
+    return render(request, 'add_training_program.html', {"user":user, "form":form})
 
 
 def edit_training_program(request):
