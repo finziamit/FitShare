@@ -113,4 +113,4 @@ class Training_Program(models.Model):
     date = models.DateTimeField(default=timezone.now)
 
     def __str__(self):
-        return f"{self.__user_id}'s Training program"
+        return f"{self.user_id.name}'s Training program"

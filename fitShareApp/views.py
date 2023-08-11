@@ -22,16 +22,33 @@ def add_training_program(request):
         return redirect('login_user')
 
     if request.method == "POST":
-        form = AddTrainingProgramForm(request.POST, initial={'user_id':user})
+        form = AddTrainingProgramForm(request.POST, initial={'user_id': user})
+
         if form.is_valid():
-            form.save()
+            program = form.save()
+
+            # Process dynamically added exercise forms
+            exercise_prefix = 'exercises'
+            exercise_count = 0
+            while f"{exercise_prefix}-{exercise_count}-name" in request.POST:
+                exercise_name = request.POST[f"{exercise_prefix}-{exercise_count}-name"]
+                sets = int(request.POST[f"{exercise_prefix}-{exercise_count}-sets"])
+                reps = int(request.POST[f"{exercise_prefix}-{exercise_count}-reps"])
+
+                exercise = Exercise.create_exercise(name=exercise_name, sets=sets, reps=reps)
+                program.exercises.add(exercise)
+                
+                exercise_count += 1
+
+            program.save()
+
             return redirect('home_page')
-    elif request.method == "DELETE":
-        raise Http404()
+
     else:
         form = AddTrainingProgramForm(initial={'user_id': user})
-    
-    return render(request, 'add_training_program.html', {"user":user, "form":form})
+
+    return render(request, 'add_training_program.html', {"user": user, "form": form})
+
 
 
 def edit_training_program(request):

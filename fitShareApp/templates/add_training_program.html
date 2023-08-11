@@ -1,13 +1,44 @@
 {% extends 'base.html' %}{% load static %} {% block content %}
 <head>
     <link rel="stylesheet" type="text/css" href="{% static 'css/add_training_program.css' %}">
-</head>    
+</head>
+
 <div class="program-container">
     <h1 class="new-program">New Training Program</h1>
-    <form method="POST">
-        {% csrf_token %} {{ form.as_p }}
+    <form id="program-form" method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <div id="exercises-container">
+            <!-- Dynamic exercise forms will be added here -->
+        </div>
+        <button type="button" id="add-exercise">Add Exercise</button>
         <input type="submit" value="Publish" />
     </form>
 </div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const form = document.getElementById("program-form");
+        const exercisesContainer = document.getElementById("exercises-container");
+        const addExerciseButton = document.getElementById("add-exercise");
+        let exerciseCount = 0;
+
+        addExerciseButton.addEventListener("click", function () {
+            exerciseCount++;
+            const exerciseForm = document.createElement("div");
+            exerciseForm.innerHTML = `
+                <h3>Exercise ${exerciseCount}</h3>
+                <label for="id_exercises-${exerciseCount}-name">Exercise Name:</label>
+                <input type="text" name="exercises-${exerciseCount}-name" required>
+                <label for="id_exercises-${exerciseCount}-sets">Sets:</label>
+                <input type="number" name="exercises-${exerciseCount}-sets" required>
+                <label for="id_exercises-${exerciseCount}-reps">Reps:</label>
+                <input type="number" name="exercises-${exerciseCount}-reps" required>
+            `;
+            exercisesContainer.appendChild(exerciseForm);
+        });
+    });
+</script>
+
 
 {% endblock %}

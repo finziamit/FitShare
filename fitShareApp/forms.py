@@ -1,12 +1,23 @@
 from django import forms
 from .models import Training_Program, Exercise, User
 from django.contrib.auth.models import User as Custom_user
+from django.forms import formset_factory
 
+
+
+class ExerciseForm(forms.ModelForm):
+    class Meta:
+        model = Exercise
+        fields = ('name', 'sets', 'reps')
+
+ExerciseFormSet = formset_factory(ExerciseForm, extra=1)
 
 class AddTrainingProgramForm(forms.ModelForm):
+    exercises = ExerciseFormSet(prefix='exercises')
+    
     class Meta:
         model = Training_Program
-        fields = ('user_id', 'excercises')
+        fields = ('user_id',)
         widgets = {'user_id': forms.HiddenInput()}
 
 
