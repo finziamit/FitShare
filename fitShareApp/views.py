@@ -104,7 +104,8 @@ def login_user(request):
 
 
 def logout_user(request):
-    pass
+    logout(request)
+    return redirect("login_user")
 
 def show_program(request):
     pass
