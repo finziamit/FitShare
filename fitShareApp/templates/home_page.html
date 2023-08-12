@@ -16,9 +16,10 @@
         <p>
             {{program.date}}
         </p>
-        {% if request.user.is_authenticated %}
-            <!-- Add authenticated user privilleges-->
-        {% endif %}
+        <a
+          href="{% url 'show_program' program_pk=program.id %}">
+          <button class="btn" role="submit">View Program</button>
+        </a>
         <hr />
         {% endfor %}
     </div>
