@@ -14,7 +14,7 @@ class User(models.Model):
     height - User's height
     email_address - User's email
     """
-    user1 = models.OneToOneField(Custom_user, on_delete=models.CASCADE)
+    user1 = models.OneToOneField(Custom_user, on_delete=models.CASCADE, null=True)
     name = models.CharField(max_length=100)
     password = models.CharField(max_length=70)
     gender = models.CharField(max_length=20)
@@ -79,7 +79,7 @@ class Exercise(models.Model):
     reps = models.IntegerField()
 
     def __str__(self):
-        return f"{self.__name}\t{self.__reps}x{self.__sets}"
+        return f"{self.name}\t{self.reps}x{self.sets}"
     
     def edit_exercise(self, sets, reps):
         if sets > 0:

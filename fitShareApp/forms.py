@@ -1,8 +1,6 @@
 from django import forms
 from .models import Training_Program, Exercise, User
-from django.contrib.auth.models import User as Custom_user
 from django.forms import formset_factory
-
 
 
 class ExerciseForm(forms.ModelForm):
@@ -40,17 +38,17 @@ class NewUserForm(forms.ModelForm):
         model = User
         fields = ('name', 'password', 'gender', 'weight', 'height', 'email')
 
-        def clean(self):
-            cleaned_data = super().clean()
-            password = cleaned_data.get("password")
-            password_confirm = cleaned_data.get("password_confirm")
+    def clean(self):
+        cleaned_data = super().clean()
+        password = cleaned_data.get("password")
+        password_confirm = cleaned_data.get("password_confirm")
 
-            if password != password_confirm:
-                raise forms.ValidationError("Passwords do not match")
-            return cleaned_data
-        
-        def save(self, commit=True):
-            user = User.create_user(
+        if password != password_confirm:
+            raise forms.ValidationError("Passwords do not match")
+        return cleaned_data
+    
+    def save(self, commit=True):
+        user = User.create_user(
             name=self.cleaned_data['name'],
             password=self.cleaned_data['password'],
             gender=self.cleaned_data['gender'],
@@ -58,7 +56,7 @@ class NewUserForm(forms.ModelForm):
             height=self.cleaned_data['height'],
             email=self.cleaned_data['email']
         )
-            return user
+        return user
 
 
 class EditTrainingProgramForm(forms.ModelForm):

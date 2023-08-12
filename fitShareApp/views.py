@@ -4,12 +4,10 @@ from .forms import *
 from django.http import Http404
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
-from django.contrib.auth.decorators import login_required
+from django.core.exceptions import ObjectDoesNotExist
 
 
 def home_page(request):
-    # if not request.user.is_authenticated:
-    #     return redirect('sign_in')
     programs = Training_Program.objects.all()
     return render(request, 'home_page.html', {'programs':programs})
 
@@ -27,7 +25,6 @@ def add_training_program(request):
         if form.is_valid():
             program = form.save()
 
-            # Process dynamically added exercise forms
             exercise_prefix = 'exercises'
             exercise_count = 0
             while f"{exercise_prefix}-{exercise_count}-name" in request.POST:
@@ -35,7 +32,8 @@ def add_training_program(request):
                 sets = int(request.POST[f"{exercise_prefix}-{exercise_count}-sets"])
                 reps = int(request.POST[f"{exercise_prefix}-{exercise_count}-reps"])
 
-                exercise = Exercise.create_exercise(name=exercise_name, sets=sets, reps=reps)
+                exercise = Exercise(name=exercise_name, sets=sets, reps=reps)
+                exercise.save()
                 program.exercises.add(exercise)
                 
                 exercise_count += 1
@@ -90,7 +88,6 @@ def login_user(request):
         if request.method == "POST":
             username = request.POST.get("email")
             password = request.POST.get("password")
-            print(f"usernamne:{username}\npassword:{password}")
             user = authenticate(request, username=username, password=password)
             if user is not None:
                 login(request, user)
@@ -107,8 +104,14 @@ def logout_user(request):
     logout(request)
     return redirect("login_user")
 
-def show_program(request):
-    pass
+def show_program(request, program_pk):
+    try:
+        program = Training_Program.objects.get(pk=program_pk)
+    except ObjectDoesNotExist:
+        raise Http404()
+    
+    return render(request, 'show_training_program.html', {'program': program})
+
 
 def about(request):
     return render(request, 'about.html', {})
