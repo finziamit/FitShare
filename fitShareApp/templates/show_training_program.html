@@ -13,9 +13,11 @@
                 <p class="nickname"> &#128100; {{program.user_id.name}} | &#8987; {{program.date}} </p>
             </div>
             <hr>
-            {% for exercise in program.excercises.all %}
-                <p>{{exercise}}</p>
-            {% endfor %}
+            <div class="exercises">
+                {% for exercise in program.excercises.all %}
+                    <p class="exercise">{{ exercise }}</p>
+                {% endfor %}
+            </div>
         </header>
     </program>
 </main>
