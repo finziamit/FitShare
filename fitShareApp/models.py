@@ -74,7 +74,7 @@ class Exercise(models.Model):
     sets - Exercise's sets amount
     reps - Exercise's reps amount
     """
-    name = models.CharField(max_length = 150, unique=True)
+    name = models.CharField(max_length = 150, unique=False)
     sets = models.IntegerField()
     reps = models.IntegerField()
 

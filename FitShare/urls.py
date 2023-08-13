@@ -22,11 +22,11 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.home_page, name="home_page"),
     path('add_training_program/', views.add_training_program, name="add_training_program"),
-    path('edit_training_program/', views.edit_training_program, name="edit_training_program"),
-    path('delete_training_program/', views.delete_training_program, name="delete_training_program"),
+    path('delete_training_program/<str:program_pk>', views.delete_training_program, name="delete_training_program"),
     path('signup/', views.signup, name='signup'),
     path('login_user/', views.login_user, name="login_user"),
     path('logout_user/', views.logout_user, name="logout_user"),
     path('show_program/<str:program_pk>', views.show_program, name="show_program"),
+    path('my_training_programs/<str:user_id>/', views.my_training_programs, name="my_training_programs"),
     path('about', views.about, name="about")
 ]

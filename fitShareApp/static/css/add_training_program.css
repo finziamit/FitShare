@@ -55,11 +55,11 @@
   }
   
   @media (max-width: 576px) {
-    .article-container {
+    .program-container {
       padding: 10px;
     }
   
-    .new-article {
+    .new-program {
       font-size: 1.5em;
     }
   

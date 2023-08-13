@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<!doctype html>
+<html lang="en">
+
+<head>
+  <link rel="stylesheet" type="text/css" href="{% static 'css/my_training_programs.css' %}">
+  <title>FitShare</title>
+</head>
+
+<body>
+  <section id="programssection">
+    <h2>My Programs:</h2>
+    {% if num_programs > 0 %}
+        <div id="My_Programs">
+            {% for program in my_programs %}
+                <hr>
+                <program>
+                    <header><p class="nickname"> &#128100; {{user.name}} | &#8987; {{program.date}} </p></header>
+                    <h2>{{program.title | truncatechars:30}}</h2>
+                    <p>{{program.content | truncatechars:70}}</p>
+                    <footer>
+                        <div class="footer">
+                            <a href = "{% url 'delete_training_program' program_pk=program.id %}">
+                                <button id="delete_button" role="submit">Delete Program</button>
+                            </a>
+                        </div>
+                    </footer>
+                </program>
+            {% endfor %}
+            <hr>
+        </div>
+    
+    {% else %}
+    <h4 class="NotFound">Program Not Found.</h4>
+    {% endif %}
+  </section>
+</body>
+{% endblock %}
+
+

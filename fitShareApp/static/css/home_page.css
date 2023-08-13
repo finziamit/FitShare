@@ -18,12 +18,12 @@
     box-sizing: inherit;
   }
   
-  .left-area {
+  .right-area {
     width: 50%;
-    float: left;
+    float: right;
   }
   
-  .right-area {
+  .left-area {
     width: 50%;
     float: left;
     align-items: center;
