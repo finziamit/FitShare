@@ -47,15 +47,9 @@ def add_training_program(request):
     return render(request, 'add_training_program.html', {"user": user, "form": form})
 
 
-
-def edit_training_program(request):
-    pass
-
-
-def delete_training_program(request, training_program_pk):
+def delete_training_program(request, program_pk):
     try:
-        program = Training_Program.objects.get(id=training_program_pk)
-        user = program.user_id
+        program = Training_Program.objects.get(id=program_pk)
         program.delete()
         return redirect(home_page)
 
@@ -110,6 +104,25 @@ def show_program(request, program_pk):
         raise Http404()
     
     return render(request, 'show_training_program.html', {'program': program})
+
+
+def my_training_programs(request, user_id = None):
+    if request.user.is_authenticated:
+        user_id = request.user
+        user = User.get_user_by_email(user_id.username)
+        try:
+            my_programs = Training_Program.objects.filter(user_id=user).order_by('date')
+        except ObjectDoesNotExist:
+            my_programs = None
+        num_programs = len(my_programs)
+    else:
+        return redirect('login_user')
+
+    return render(request, 'my_training_programs.html', {
+            'user': user,
+            'my_programs': my_programs,
+            'num_programs': num_programs
+        })
 
 
 def about(request):
