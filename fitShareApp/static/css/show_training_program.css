@@ -32,10 +32,10 @@ hr {
 }
 
 .exercises {
-    margin-top: 20px; /* Adjust spacing as needed */
+    margin-top: 20px;
 }
 
 .exercise {
-    font-size: 30px; /* You can adjust the font size */
-    margin: 15px 0; /* Add spacing between exercises */
+    font-size: 30px;
+    margin: 15px 0;
 }
