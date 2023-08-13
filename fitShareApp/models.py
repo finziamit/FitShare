@@ -79,7 +79,7 @@ class Exercise(models.Model):
     reps = models.IntegerField()
 
     def __str__(self):
-        return f"{self.name}\t{self.reps}x{self.sets}"
+        return f"{self.name} {self.reps}x{self.sets}"
     
     def edit_exercise(self, sets, reps):
         if sets > 0:

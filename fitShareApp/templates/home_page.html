@@ -1,25 +1,22 @@
 {% extends "base.html" %} {% load static %} {% block content %}
 <head>
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="{% static 'css/home_page.css' %}"
-    />
-  </head>
-    <div class="slogan left-area">
-      <!-- Add slogan image 'It's not a bug, it's a FitShare-->
-    </div>
-    <div class="articles__content right-area">
-        <hr />
-        {% for program in programs %}
-        <h2>{{program | truncatechars:30}}</h2>
-        <p>
-            {{program.date}}
-        </p>
-        {% if request.user.is_authenticated %}
-            <!-- Add authenticated user privilleges-->
-        {% endif %}
-        <hr />
-        {% endfor %}
-    </div>
+  <link rel="stylesheet" type="text/css" href="{% static 'css/home_page.css' %}"/>
+</head>
+  <div class="slogan right-area">
+    <!-- Add slogan image 'It's not a bug, it's a FitShare-->
+  </div>
+  <div class="programs__content right-area">
+      <hr />
+      {% for program in programs %}
+      <h2>{{program | truncatechars:30}}</h2>
+      <p>
+          {{program.date}}
+      </p>
+      <a
+        href="{% url 'show_program' program_pk=program.id %}">
+        <button class="btn" role="submit">View Program</button>
+      </a>
+      <hr />
+      {% endfor %}
+  </div>
 {% endblock %}

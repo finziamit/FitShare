@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/show_training_program.css' %}">
+</head>
+
+<main>
+    <program>
+        <header>
+            <h2>{{program}}</h2>
+            <div class="footer">
+                <p class="nickname"> &#128100; {{program.user_id.name}} | &#8987; {{program.date}} </p>
+            </div>
+            <hr>
+            <div class="exercises">
+                {% for exercise in program.excercises.all %}
+                    <p class="exercise">{{ exercise }}</p>
+                {% endfor %}
+            </div>
+        </header>
+    </program>
+</main>
+{% endblock %}

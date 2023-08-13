@@ -26,16 +26,15 @@ def add_training_program(request):
             program = form.save()
 
             exercise_prefix = 'exercises'
-            exercise_count = 0
+            exercise_count = 1
             while f"{exercise_prefix}-{exercise_count}-name" in request.POST:
                 exercise_name = request.POST[f"{exercise_prefix}-{exercise_count}-name"]
                 sets = int(request.POST[f"{exercise_prefix}-{exercise_count}-sets"])
                 reps = int(request.POST[f"{exercise_prefix}-{exercise_count}-reps"])
 
-                exercise = Exercise(name=exercise_name, sets=sets, reps=reps)
-                exercise.save()
-                program.exercises.add(exercise)
-                
+                exercise = Exercise.create_exercise(name=exercise_name, sets=sets, reps=reps)
+                program.excercises.add(exercise)
+
                 exercise_count += 1
 
             program.save()
