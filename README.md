@@ -28,4 +28,4 @@ In order to run **FitShare** you should install:
 5. Get ready to take your fitness journey to the next level with FitShare! 💪🔥
 
 # Demo Video
-[![FitShare Demo](https://img.youtube.com/vi/scBYxNO3Zt0&t=44s/0.jpg)](https://www.youtube.com/watch?v=scBYxNO3Zt0&t=44s "FitShare Demo")
+[![FitShare Demo](https://img.youtube.com/vi/scBYxNO3Zt0/0.jpg)](https://www.youtube.com/watch?v=scBYxNO3Zt0&t=44s "FitShare Demo")
