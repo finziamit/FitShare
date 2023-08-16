@@ -26,3 +26,6 @@ In order to run **FitShare** you should install:
 3. Run the 'vagrant up' command
 4. Use any browser and navigate to http://localhost:8000.
 5. Get ready to take your fitness journey to the next level with FitShare! 💪🔥
+
+# Demo Video
+[![FitShare Demo](https://img.youtube.com/vi/scBYxNO3Zt0&t=44s/0.jpg)](https://www.youtube.com/watch?v=scBYxNO3Zt0&t=44s "FitShare Demo")
